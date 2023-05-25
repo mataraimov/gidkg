@@ -19,12 +19,12 @@ function ProductSmokingHero() {
           px: 5,
         }}
       >
-        <Typography variant="h4" component="span">
-          Got any questions? Need help?
+        <Typography variant="h5" component="span">
+          Eсть вопросы? нужна помощь?
         </Typography>
       </Button>
       <Typography variant="subtitle1" sx={{ my: 3 }}>
-        We are here to help. Get in touch!
+        Мы здесь, чтобы помочь. Свяжитесь с нами!
       </Typography>
       <Box
         component="img"

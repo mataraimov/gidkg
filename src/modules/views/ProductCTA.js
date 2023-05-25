@@ -33,20 +33,20 @@ function ProductCTA() {
             }}
           >
             <Box component="form" onSubmit={handleSubmit} sx={{ maxWidth: 400 }}>
-              <Typography variant="h2" component="h2" gutterBottom>
-                Receive offers
+              <Typography variant="h3" component="h2" gutterBottom>
+                ПОЛУЧАЙТЕ ПРЕДЛОЖЕНИЯ
               </Typography>
               <Typography variant="h5">
-                Taste the holidays of the everyday close to home.
+                Ощутите атмосферу праздника каждый день недалеко от дома.
               </Typography>
               <TextField
                 noBorder
-                placeholder="Your email"
+                placeholder="ваша электронная почта"
                 variant="standard"
                 sx={{ width: '100%', mt: 3, mb: 2 }}
               />
               <Button type="submit" color="primary" variant="contained" sx={{ width: '100%' }}>
-                Keep me updated
+                Держи меня в курсе
               </Button>
             </Box>
           </Box>
@@ -70,7 +70,7 @@ function ProductCTA() {
           />
           <Box
             component="img"
-            src="https://images.unsplash.com/photo-1527853787696-f7be74f2e39a?auto=format&fit=crop&w=750"
+            src="https://24.kg/files/media/84/84810.jpg"
             alt="call to action"
             sx={{
               position: 'absolute',
@@ -87,7 +87,7 @@ function ProductCTA() {
       <Snackbar
         open={open}
         closeFunc={handleClose}
-        message="We will send you our best offers, once a week."
+        message="Мы будем отправлять вам наши лучшие предложения, один раз в неделю."
       />
     </Container>
   );

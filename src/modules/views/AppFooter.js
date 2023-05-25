@@ -5,18 +5,19 @@ import Link from '@mui/material/Link';
 import Container from '@mui/material/Container';
 import Typography from '../components/Typography';
 import TextField from '../components/TextField';
+import withRoot from '../withRoot';
 
-function Copyright() {
-  return (
-    <React.Fragment>
-      {'© '}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-    </React.Fragment>
-  );
-}
+// function Copyright() {
+//   return (
+//     <React.Fragment>
+//       {'© '}
+//       <Link color="inherit" href="https://mui.com/">
+//         Ogogo Group
+//       </Link>{' '}
+//       {new Date().getFullYear()}
+//     </React.Fragment>
+//   );
+// }
 
 const iconStyle = {
   width: 48,
@@ -42,7 +43,7 @@ const LANGUAGES = [
   },
 ];
 
-export default function AppFooter() {
+function AppFooter() {
   return (
     <Typography component="footer" sx={{ display: 'flex', bgcolor: 'white' }}>
       <Container sx={{ my: 8, display: 'flex' }}>
@@ -69,27 +70,24 @@ export default function AppFooter() {
                   />
                 </Box>
               </Grid>
-              <Grid item>
-                <Copyright />
-              </Grid>
             </Grid>
           </Grid>
           <Grid item xs={6} sm={4} md={2}>
             <Typography variant="h6" marked="left" gutterBottom>
-              Legal
+              ПРАВО
             </Typography>
             <Box component="ul" sx={{ m: 0, listStyle: 'none', p: 0 }}>
               <Box component="li" sx={{ py: 0.5 }}>
-                <Link href="/premium-themes/onepirate/terms/">Terms</Link>
+                <Link href="/terms/">Условия</Link>
               </Box>
               <Box component="li" sx={{ py: 0.5 }}>
-                <Link href="/premium-themes/onepirate/privacy/">Privacy</Link>
+                <Link href="/privacy/">Приватность</Link>
               </Box>
             </Box>
           </Grid>
           <Grid item xs={6} sm={8} md={4}>
             <Typography variant="h6" marked="left" gutterBottom>
-              Language
+              Язык
             </Typography>
             <TextField
               select
@@ -109,15 +107,15 @@ export default function AppFooter() {
           </Grid>
           <Grid item>
             <Typography variant="caption">
-              {'Icons made by '}
+              {'Иконки созданы  '}
               <Link href="https://www.freepik.com" rel="sponsored" title="Freepik">
                 Freepik
               </Link>
-              {' from '}
+              {' с '}
               <Link href="https://www.flaticon.com" rel="sponsored" title="Flaticon">
                 www.flaticon.com
               </Link>
-              {' is licensed by '}
+              {' лицензия'}
               <Link
                 href="https://creativecommons.org/licenses/by/3.0/"
                 title="Creative Commons BY 3.0"
@@ -133,3 +131,4 @@ export default function AppFooter() {
     </Typography>
   );
 }
+export default withRoot(AppFooter);

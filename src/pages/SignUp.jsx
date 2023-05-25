@@ -1,7 +1,8 @@
 import * as React from 'react';
-import { Field, Form, FormSpy } from 'react-final-form';
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
+import { Field, Form, FormSpy } from 'react-final-form';
 import Typography from '../modules/components/Typography';
 import AppForm from '../modules/views/AppForm';
 import { email, required } from '../modules/form/validation';
@@ -9,11 +10,12 @@ import RFTextField from '../modules/form/RFTextField';
 import FormButton from '../modules/form/FormButton';
 import FormFeedback from '../modules/form/FormFeedback';
 import withRoot from '../modules/withRoot';
-function SignIn() {
+
+function SignUp() {
   const [sent, setSent] = React.useState(false);
 
   const validate = (values) => {
-    const errors = required(['email', 'password'], values);
+    const errors = required(['firstName', 'lastName', 'email', 'password'], values);
 
     if (!errors.email) {
       const emailError = email(values.email);
@@ -34,39 +36,60 @@ function SignIn() {
       <AppForm>
         <React.Fragment>
           <Typography variant="h3" gutterBottom marked="center" align="center">
-            Войти
+            Регистрация
           </Typography>
           <Typography variant="body2" align="center">
-            {'Еще не зарегистрированы? '}
-            <Link href="/sign-up/" align="center" underline="always">
-              Регистрация
+            <Link href="/sign-in/" underline="always">
+              Уже есть аккаунт?
             </Link>
           </Typography>
         </React.Fragment>
         <Form onSubmit={handleSubmit} subscription={{ submitting: true }} validate={validate}>
           {({ handleSubmit: handleSubmit2, submitting }) => (
             <Box component="form" onSubmit={handleSubmit2} noValidate sx={{ mt: 6 }}>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
+                  <Field
+                    autoFocus
+                    component={RFTextField}
+                    disabled={submitting || sent}
+                    autoComplete="given-name"
+                    fullWidth
+                    label="Имя"
+                    name="firstName"
+                    required
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <Field
+                    component={RFTextField}
+                    disabled={submitting || sent}
+                    autoComplete="family-name"
+                    fullWidth
+                    label="Фамилия"
+                    name="lastName"
+                    required
+                  />
+                </Grid>
+              </Grid>
               <Field
                 autoComplete="email"
-                autoFocus
                 component={RFTextField}
                 disabled={submitting || sent}
                 fullWidth
-                label="Email"
+                label="Почта"
                 margin="normal"
                 name="email"
                 required
-                size="large"
               />
               <Field
                 fullWidth
-                size="large"
                 component={RFTextField}
                 disabled={submitting || sent}
                 required
                 name="password"
-                autoComplete="current-password"
-                label="Password"
+                autoComplete="new-password"
+                label="Пароль"
                 type="password"
                 margin="normal"
               />
@@ -82,23 +105,17 @@ function SignIn() {
               <FormButton
                 sx={{ mt: 3, mb: 2 }}
                 disabled={submitting || sent}
-                size="large"
                 color="secondary"
                 fullWidth
               >
-                {submitting || sent ? 'В процессе…' : 'Войти'}
+                {submitting || sent ? 'In progress…' : 'Sign Up'}
               </FormButton>
             </Box>
           )}
         </Form>
-        <Typography align="center">
-          <Link underline="always" href="/forgot-password/">
-            Забыли пароль?
-          </Link>
-        </Typography>
       </AppForm>
     </React.Fragment>
   );
 }
 
-export default withRoot(SignIn);
+export default withRoot(SignUp);

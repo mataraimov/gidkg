@@ -4,7 +4,7 @@ import Typography from '../components/Typography';
 import ProductHeroLayout from './ProductHeroLayout';
 
 const backgroundImage =
-  'https://images.unsplash.com/photo-1534854638093-bada1813ca19?auto=format&fit=crop&w=1400';
+  'https://www.journalofnomads.com/wp-content/uploads/2019/09/Tash-Rabat-Yurt-camp-1024x768.jpg';
 
 export default function ProductHero() {
   return (
@@ -17,21 +17,21 @@ export default function ProductHero() {
     >
       {/* Increase the network loading priority of the background image. */}
       <img style={{ display: 'none' }} src={backgroundImage} alt="increase priority" />
-      <Typography color="inherit" align="center" variant="h2" marked="center">
-        Upgrade your Sundays
+      <Typography color="inherit" align="center" variant="h3" marked="center">
+        Расширьте свои возможности
       </Typography>
       <Typography color="inherit" align="center" variant="h5" sx={{ mb: 4, mt: { xs: 4, sm: 10 } }}>
-        Enjoy secret offers up to -70% off the best luxury hotels every Sunday.
+        Улучшите свой опыт путешествия, обнаружив лучшие местные бизнесы.
       </Typography>
       <Button
         color="secondary"
         variant="contained"
         size="large"
         component="a"
-        href="/signin/"
+        href="/sign-in/"
         sx={{ minWidth: 200 }}
       >
-        Register your deal
+        Зарегистрировать бизнес
       </Button>
       <Button
         style={{ margin: '10px 0' }}
@@ -42,10 +42,10 @@ export default function ProductHero() {
         href="/tourism/"
         sx={{ minWidth: 200 }}
       >
-        Start your journey
+        Планировать путешествие
       </Button>
       <Typography variant="body2" color="inherit" sx={{ mt: 2 }}>
-        Discover the experience
+        Исследуйте и наслаждайтесь
       </Typography>
     </ProductHeroLayout>
   );

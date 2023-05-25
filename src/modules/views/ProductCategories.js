@@ -55,48 +55,48 @@ const ImageIconButton = styled(ButtonBase)(({ theme }) => ({
 
 const images = [
   {
-    url: 'https://images.unsplash.com/photo-1534081333815-ae5019106622?auto=format&fit=crop&w=400',
-    title: 'Snorkeling',
+    url: 'http://t0.gstatic.com/images?q=tbn:ANd9GcQv-2wv7OjwgQYg6-tiA8mBTPNqYqnvenlVdYa-hfng7a10ZotT&s',
+    title: 'Горные пейзажи',
     width: '40%',
   },
   {
-    url: 'https://images.unsplash.com/photo-1531299204812-e6d44d9a185c?auto=format&fit=crop&w=400',
-    title: 'Massage',
+    url: 'http://t0.gstatic.com/images?q=tbn:ANd9GcS_VlOphLe12DG_yp9LO_ZPG5dgKeRtt64OglyGtBMFqAy973U&s',
+    title: 'Экскурсии',
     width: '20%',
   },
   {
-    url: 'https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?auto=format&fit=crop&w=400',
-    title: 'Hiking',
+    url: 'http://t0.gstatic.com/images?q=tbn:ANd9GcRRzXoUGfzKggV59-2LpMr4CYMZoHnYpUJ2Q_jL8I5QBiRWTIbe&s',
+    title: 'Культурные мероприятия',
     width: '40%',
   },
   {
-    url: 'https://images.unsplash.com/photo-1453747063559-36695c8771bd?auto=format&fit=crop&w=400',
-    title: 'Tour',
+    url: 'http://t0.gstatic.com/images?q=tbn:ANd9GcRyjghTIVCiHgoGdjh8HRKcdijmOhi3t8jH4-OGX37BThAz2F8&s',
+    title: 'Конные прогулки',
     width: '38%',
   },
   {
-    url: 'https://images.unsplash.com/photo-1523309996740-d5315f9cc28b?auto=format&fit=crop&w=400',
-    title: 'Gastronomy',
+    url: 'http://t0.gstatic.com/images?q=tbn:ANd9GcTQfZTMUHFjOiciLBQlpmrCA1QM6jbMYd8ms_RHOayaY43W7JUv&s',
+    title: 'Национальная кухня',
     width: '38%',
   },
   {
-    url: 'https://images.unsplash.com/photo-1534452203293-494d7ddbf7e0?auto=format&fit=crop&w=400',
-    title: 'Shopping',
+    url: 'http://t0.gstatic.com/images?q=tbn:ANd9GcR484gqEGzz-1zriWcLwdR4EnzHBNrGte49hRmVm6CIOczqlqI&s',
+    title: 'Шоппинг',
     width: '24%',
   },
   {
-    url: 'https://images.unsplash.com/photo-1506941433945-99a2aa4bd50a?auto=format&fit=crop&w=400',
-    title: 'Walking',
+    url: 'http://t0.gstatic.com/images?q=tbn:ANd9GcQ22dknmL1KuQDfOXraikaiCos9srVWi67gzUrL2hEohx44rrlG&s',
+    title: 'Пешие прогулки',
     width: '40%',
   },
   {
-    url: 'https://images.unsplash.com/photo-1533727937480-da3a97967e95?auto=format&fit=crop&w=400',
-    title: 'Fitness',
+    url: 'http://t0.gstatic.com/images?q=tbn:ANd9GcR7C0wiq1o4NOsyqIDcliiqFNFa4T9m7Zmv7p3qI2atE1t_cMvh&s',
+    title: 'Спорт и фитнес',
     width: '20%',
   },
   {
-    url: 'https://images.unsplash.com/photo-1518136247453-74e7b5265980?auto=format&fit=crop&w=400',
-    title: 'Reading',
+    url: 'http://t0.gstatic.com/images?q=tbn:ANd9GcTazkMDMTQL6Z9RMZU-1sklKphJ8k3vPceAua-Bu_SCy3hRJcBO&s',
+    title: 'Спа и массаж',
     width: '40%',
   },
 ];
@@ -105,7 +105,7 @@ export default function ProductCategories() {
   return (
     <Container component="section" sx={{ mt: 8, mb: 4 }}>
       <Typography variant="h4" marked="center" align="center" component="h2">
-        For all tastes and all desires
+        Разнообразие для каждого и всех желаний
       </Typography>
       <Box sx={{ mt: 8, display: 'flex', flexWrap: 'wrap' }}>
         {images.map((image) => (
@@ -141,12 +141,7 @@ export default function ProductCategories() {
                 color: 'common.white',
               }}
             >
-              <Typography
-                component="h3"
-                variant="h6"
-                color="inherit"
-                className="imageTitle"
-              >
+              <Typography component="h3" variant="h6" color="inherit" className="imageTitle">
                 {image.title}
                 <div className="imageMarked" />
               </Typography>

@@ -10,6 +10,9 @@ const item = {
   flexDirection: 'column',
   alignItems: 'center',
   px: 5,
+  height: '100%', // ensure full height
+  justifyContent: 'start',
+  textAlign: 'center',
 };
 
 function ProductValues() {
@@ -32,12 +35,11 @@ function ProductValues() {
                 sx={{ height: 55 }}
               />
               <Typography variant="h6" sx={{ my: 5 }}>
-                The best luxury hotels
+                Лучшие места для отдыха в Кыргызстане
               </Typography>
               <Typography variant="h5">
-                {'From the latest trendy boutique hotel to the iconic palace with XXL pool'}
-
-                {', go for a mini-vacation just a few subway stops away from your home.'}
+                {'От самых модных бутик-отелей до красивых национальных парков, '}
+                {'возможности для отдыха всего в нескольких шагах от вашего дома.'}
               </Typography>
             </Box>
           </Grid>
@@ -50,12 +52,13 @@ function ProductValues() {
                 sx={{ height: 55 }}
               />
               <Typography variant="h6" sx={{ my: 5 }}>
-                New experiences
+                Удивительные новые впечатления
               </Typography>
               <Typography variant="h5">
-                {'Privatize a pool, take a Japanese bath or wake up in 900m2 of garden… '}
-
-                {'your Sundays will not be alike.'}
+                {
+                  'Приватизируйте гостиницу, прокатитесь на коне или проснитесь с видом на прекрасные горы… '
+                }
+                {'ваш отдых будет неповторимым.'}
               </Typography>
             </Box>
           </Grid>
@@ -68,11 +71,11 @@ function ProductValues() {
                 sx={{ height: 55 }}
               />
               <Typography variant="h6" sx={{ my: 5 }}>
-                Exclusive rates
+                Эксклюзивные предложения
               </Typography>
               <Typography variant="h5">
-                {'By registering, you will access specially negotiated rates '}
-                {'that you will not find anywhere else.'}
+                {'Зарегистрируйтесь и получите доступ к специально договорённым ценам '}
+                {'которые вы не найдете больше нигде.'}
               </Typography>
             </Box>
           </Grid>

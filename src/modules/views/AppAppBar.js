@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import AppBar from '../components/AppBar';
 import Toolbar from '../components/Toolbar';
+import withRoot from '../withRoot';
 
 const rightLink = {
   fontSize: 16,
@@ -16,26 +17,20 @@ function AppAppBar() {
       <AppBar position="fixed">
         <Toolbar sx={{ justifyContent: 'space-between' }}>
           <Box sx={{ flex: 1 }} />
-          <Link
-            variant="h6"
-            underline="none"
-            color="inherit"
-            href="/premium-themes/onepirate/"
-            sx={{ fontSize: 24 }}
-          >
-            {'onepirate'}
+          <Link variant="h6" underline="none" color="inherit" href="/" sx={{ fontSize: 24 }}>
+            {'gidkg'}
           </Link>
           <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
-            <Link color="inherit" variant="h6" underline="none" href="/signin/" sx={rightLink}>
-              {'Sign In'}
+            <Link color="inherit" variant="h6" underline="none" href="/sign-in/" sx={rightLink}>
+              {'войти'}
             </Link>
             <Link
               variant="h6"
               underline="none"
-              href="/premium-themes/onepirate/sign-up/"
+              href="/sign-up/"
               sx={{ ...rightLink, color: 'secondary.main' }}
             >
-              {'Sign Up'}
+              {'присоединиться'}
             </Link>
           </Box>
         </Toolbar>
@@ -45,4 +40,4 @@ function AppAppBar() {
   );
 }
 
-export default AppAppBar;
+export default withRoot(AppAppBar);

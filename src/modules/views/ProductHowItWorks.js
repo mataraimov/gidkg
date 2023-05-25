@@ -50,7 +50,7 @@ function ProductHowItWorks() {
           }}
         />
         <Typography variant="h4" marked="center" component="h2" sx={{ mb: 14 }}>
-          How it works
+          Как это работает
         </Typography>
         <div>
           <Grid container spacing={5}>
@@ -64,7 +64,7 @@ function ProductHowItWorks() {
                   sx={image}
                 />
                 <Typography variant="h5" align="center">
-                  Appointment every Wednesday 9am.
+                  Изучите наши предложения и выберите идеальное для себя.
                 </Typography>
               </Box>
             </Grid>
@@ -78,7 +78,7 @@ function ProductHowItWorks() {
                   sx={image}
                 />
                 <Typography variant="h5" align="center">
-                  First come, first served. Our offers are in limited quantities, so be quick.
+                  Зарегистрируйтесь на платформе и получите доступ к эксклюзивным предложениям.
                 </Typography>
               </Box>
             </Grid>
@@ -92,8 +92,8 @@ function ProductHowItWorks() {
                   sx={image}
                 />
                 <Typography variant="h5" align="center">
-                  {'New offers every week. New experiences, new surprises. '}
-                  {'Your Sundays will no longer be alike.'}
+                  {'Наслаждайтесь своим путешествием. '}
+                  {'Открывайте новые горизонты вместе с нами.'}
                 </Typography>
               </Box>
             </Grid>
@@ -104,10 +104,10 @@ function ProductHowItWorks() {
           size="large"
           variant="contained"
           component="a"
-          href="/premium-themes/onepirate/sign-up/"
+          href="/sign-up/"
           sx={{ mt: 8 }}
         >
-          Get started
+          Начать
         </Button>
       </Container>
     </Box>
