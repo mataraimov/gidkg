@@ -8,7 +8,7 @@ import NotFound from './pages/NotFound';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Terms from './pages/Terms';
-
+import Tourism from './pages/Tourism';
 function App() {
   return (
     <div className="App">
@@ -20,7 +20,7 @@ function App() {
         <Route path="/forgot" element={<ForgotPassword />} />
         <Route path="/terms" element={<Terms />} />
         <Route path="*" element={<NotFound />} />
-        <Route path="/tourism" element={<input />} />
+        <Route path="/tourism" element={<Tourism />} />
       </Routes>
       <AppFooter />
     </div>

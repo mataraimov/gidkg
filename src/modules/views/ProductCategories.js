@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
 import Container from '@mui/material/Container';
 import Typography from '../components/Typography';
+import { Link } from 'react-router-dom';
 
 const ImageBackdrop = styled('div')(({ theme }) => ({
   position: 'absolute',
@@ -108,9 +109,9 @@ export default function ProductCategories() {
         Разнообразие для каждого и всех желаний
       </Typography>
       <Box sx={{ mt: 8, display: 'flex', flexWrap: 'wrap' }}>
-        {images.map((image) => (
+        {images.map((image, i) => (
           <ImageIconButton
-            key={image.title}
+            key={i}
             style={{
               width: image.width,
             }}
@@ -128,24 +129,26 @@ export default function ProductCategories() {
               }}
             />
             <ImageBackdrop className="imageBackdrop" />
-            <Box
-              sx={{
-                position: 'absolute',
-                left: 0,
-                right: 0,
-                top: 0,
-                bottom: 0,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'common.white',
-              }}
-            >
-              <Typography component="h3" variant="h6" color="inherit" className="imageTitle">
-                {image.title}
-                <div className="imageMarked" />
-              </Typography>
-            </Box>
+            <Link to={'/tourism'}>
+              <Box
+                sx={{
+                  position: 'absolute',
+                  left: 0,
+                  right: 0,
+                  top: 0,
+                  bottom: 0,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  color: 'common.white',
+                }}
+              >
+                <Typography component="h3" variant="h6" color="inherit" className="imageTitle">
+                  {image.title}
+                  <div className="imageMarked" />
+                </Typography>
+              </Box>
+            </Link>
           </ImageIconButton>
         ))}
       </Box>
