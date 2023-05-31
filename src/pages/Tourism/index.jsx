@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import styled from '@emotion/styled';
+import { useState } from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import withRoot from '../../modules/withRoot';
 import {
   Card,
@@ -14,36 +12,7 @@ import {
 } from '@mui/material';
 import { NavigateBeforeSharp, NavigateNextSharp } from '@mui/icons-material';
 import { offers } from '../../utils';
-
-// Стилизованные компоненты
-const Line = styled.hr`
-  border: none;
-  height: 1px;
-  color: #000;
-  background-color: #000;
-  margin: 20px 0;
-`;
-
-const CategoryButton = styled(Button)`
-  padding: 10px 20px;
-  min-width: fit-content;
-  margin: 10px;
-  min-height: 40px;
-  @media (max-width: 600px) {
-    font-size: 0.8rem;
-    margin: 6px;
-  }
-`;
-
-const CategoryContainer = styled.div`
-  display: flex;
-  overflow-x: auto;
-  white-space: nowrap;
-  -webkit-overflow-scrolling: touch;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-`;
+import { CategoryButton, CategoryContainer, Line } from './utils/ui/Buttons';
 
 const categories = [
   'Все',
