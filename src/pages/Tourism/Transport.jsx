@@ -92,10 +92,7 @@ const Transport = () => {
 
         <PassengerSelector initialCount={passengerCount} onCountChange={setPassengerCount} />
 
-        <Link
-          to={`/search-results?from=${from}&to=${to}&date=${selectedDate}&passengers=${passengerCount}`}
-          style={{ textDecoration: 'none' }}
-        >
+        <Link to={`/tourism/results`} style={{ textDecoration: 'none' }}>
           <SearchButton>
             <SearchIcon />
             Поиск
