@@ -11,6 +11,9 @@ import Terms from './pages/Terms';
 import Tourism from './pages/Tourism';
 import SearchResults from './pages/Tourism/SearchResults';
 import TripDetails from './pages/Tourism/TripDetails';
+import CreateBusiness from './pages/business/CreateBusiness';
+import UserProfile from './pages/UserProfile';
+import SingleTour from './pages/Tourism/SingleTour';
 
 function App() {
   return (
@@ -26,6 +29,12 @@ function App() {
         <Route path="/tourism/results" element={<SearchResults />} />
         <Route path="/details/:id" element={<TripDetails />} />
         <Route path="/*" element={<NotFound />} />
+        
+        <Route path="/tour/:id" element={<SingleTour />} />
+
+        <Route path="/create-business" element={<CreateBusiness />} />
+       
+        <Route path="/user-profile" element={<UserProfile />} />
       </Routes>
       <AppFooter />
     </div>

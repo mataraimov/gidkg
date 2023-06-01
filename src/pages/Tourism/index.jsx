@@ -3,6 +3,7 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import withRoot from '../../modules/withRoot';
 import {
+  Button,
   Card,
   CardActionArea,
   CardContent,
@@ -13,6 +14,7 @@ import {
 import { NavigateBeforeSharp, NavigateNextSharp } from '@mui/icons-material';
 import { offers } from '../../utils';
 import { CategoryButton, CategoryContainer, Line } from './utils/ui/Buttons';
+import { Link } from 'react-router-dom';
 
 const categories = [
   'Все',
@@ -62,18 +64,23 @@ function Tourism() {
             const categoryOffers = filterOffers(category).slice(
               page * maxItemsPerPage,
               (page + 1) * maxItemsPerPage,
+              
             );
             return (
               <Grid item xs={12}>
                 <Typography variant="h4">{category}</Typography>
                 <Grid container spacing={3}>
                   {categoryOffers.map((offer) => (
-                    <Grid item xs={12} sm={6} md={4}>
-                      <img src={offer.imageUrl} alt={offer.title} />
-                      <Typography variant="h6">{offer.title}</Typography>
-                      <Typography>{offer.price}</Typography>
-                      <Typography>{offer.address}</Typography>
-                    </Grid>
+                    // <Button >
+                      <Link to={`/tour/1`}>
+                      <Grid item xs={12} sm={6} md={4}>
+                        <img src={offer.imageUrl} alt={offer.title} />
+                        <Typography variant="h6">{offer.title}</Typography>
+                        <Typography>{offer.price}</Typography>
+                        <Typography>{offer.address}</Typography>
+                      </Grid>
+                      </Link>
+                    // </Button>
                   ))}
                 </Grid>
                 <IconButton

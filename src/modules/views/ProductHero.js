@@ -28,7 +28,7 @@ export default function ProductHero() {
         variant="contained"
         size="large"
         component="a"
-        href="/sign-in/"
+        href="/create-business/"
         sx={{ minWidth: 200 }}
       >
         Зарегистрировать бизнес
