@@ -1,4 +1,5 @@
 import * as React from 'react';
+import axios from 'axios';
 import { Field, Form, FormSpy } from 'react-final-form';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
@@ -9,8 +10,20 @@ import RFTextField from '../modules/form/RFTextField';
 import FormButton from '../modules/form/FormButton';
 import FormFeedback from '../modules/form/FormFeedback';
 import withRoot from '../modules/withRoot';
+import { isEmpty } from 'lodash';
+import { useNavigate } from 'react-router-dom';
+
 function SignIn() {
   const [sent, setSent] = React.useState(false);
+  const [token, setToken] = React.useState(null);
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    if (!isEmpty(token)) {
+      localStorage.setItem('userToken', token);
+      navigate('/user-profile');
+    }
+  }, [token, navigate]);
 
   const validate = (values) => {
     const errors = required(['email', 'password'], values);
@@ -25,8 +38,26 @@ function SignIn() {
     return errors;
   };
 
-  const handleSubmit = () => {
-    setSent(true);
+  const handleSubmit = (values) => {
+    const userData = {
+      email_or_phone_number: values.email, // changed from 'email' to 'email_or_phone_number'
+      password: values.password,
+    };
+    axios
+      .post('http://127.0.0.1:8000/api/users/login/', userData)
+      .then((response) => {
+        const data = response.data;
+        if (!isEmpty(data) && data.access) {
+          // changed from 'token' to 'access'
+          setSent(true);
+          setToken(data.access); // changed from 'token' to 'access'
+        } else {
+          console.log('Server-side error: ', data);
+        }
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+      });
   };
 
   return (

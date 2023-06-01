@@ -10,10 +10,12 @@ import RFTextField from '../modules/form/RFTextField';
 import FormButton from '../modules/form/FormButton';
 import FormFeedback from '../modules/form/FormFeedback';
 import withRoot from '../modules/withRoot';
-
+import axios from 'axios';
+import { isEmpty } from 'lodash';
+import { useNavigate } from 'react-router-dom';
 function SignUp() {
   const [sent, setSent] = React.useState(false);
-
+  const navigate = useNavigate();
   const validate = (values) => {
     const errors = required(['firstName', 'lastName', 'email', 'password'], values);
 
@@ -27,8 +29,36 @@ function SignUp() {
     return errors;
   };
 
-  const handleSubmit = () => {
-    setSent(true);
+  const handleSubmit = (values) => {
+    const userData = {
+      name: `${values.firstName} ${values.lastName}`,
+      email: values.email,
+      password: values.password,
+      phone_number: values.phone_number,
+    };
+    axios
+      .post('http://127.0.0.1:8000/api/users/register/', userData)
+      .then((response) => {
+        const data = response.data;
+        if (!isEmpty(data) && data.email) {
+          setSent(true);
+          navigate('/sign-in');
+        } else {
+          console.log('Server-side error: ', data);
+        }
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.error('Data:', error.response.data);
+          console.error('Status:', error.response.status);
+          console.error('Headers:', error.response.headers);
+        } else if (error.request) {
+          console.error('Request:', error.request);
+        } else {
+          console.error('General Error:', error.message);
+        }
+        console.error('Config:', error.config);
+      });
   };
 
   return (
@@ -91,6 +121,16 @@ function SignUp() {
                 autoComplete="new-password"
                 label="Пароль"
                 type="password"
+                margin="normal"
+              />
+              <Field
+                fullWidth
+                component={RFTextField}
+                disabled={submitting || sent}
+                required
+                name="phone_number"
+                autoComplete="tel"
+                label="Номер телефона"
                 margin="normal"
               />
               <FormSpy subscription={{ submitError: true }}>

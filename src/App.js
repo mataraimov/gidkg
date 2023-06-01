@@ -29,11 +29,8 @@ function App() {
         <Route path="/tourism/results" element={<SearchResults />} />
         <Route path="/details/:id" element={<TripDetails />} />
         <Route path="/*" element={<NotFound />} />
-        
         <Route path="/tour/:id" element={<SingleTour />} />
-
         <Route path="/create-business" element={<CreateBusiness />} />
-       
         <Route path="/user-profile" element={<UserProfile />} />
       </Routes>
       <AppFooter />
