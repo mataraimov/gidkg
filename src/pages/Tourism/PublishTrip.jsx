@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { makeStyles } from '@mui/styles';
+import { styled } from '@mui/system';
 import { Chip, useMediaQuery, useTheme } from '@mui/material';
 import Container from '@mui/material/Container';
 import Typography from '../../modules/components/Typography';
@@ -12,56 +12,44 @@ import CustomDatePicker from './utils/helpers/CustomDatePicker';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& .MuiChip-root': {
-      margin: theme.spacing(0.5),
-      [theme.breakpoints.down('sm')]: {
-        fontSize: '0.75rem',
-        height: 'auto',
-        margin: theme.spacing(0.25),
-      },
-    },
-    '& .MuiTextField-root': {
-      margin: theme.spacing(1),
-      [theme.breakpoints.down('sm')]: {
-        width: '30ch',
-      },
-      [theme.breakpoints.up('md')]: {
-        width: '40ch',
-      },
-    },
-    '& .MuiButton-root': {
-      margin: theme.spacing(2),
-      [theme.breakpoints.down('sm')]: {
-        width: '100%',
-      },
-      [theme.breakpoints.up('md')]: {
-        width: 'auto',
-      },
-    },
-    '& .MuiChip-root': {
-      margin: theme.spacing(0.5),
+const RootContainer = styled(Container)(({ theme }) => ({
+  '& .MuiChip-root': {
+    margin: theme.spacing(0.5),
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '0.75rem',
+      height: 'auto',
+      margin: theme.spacing(0.25),
     },
   },
-  datePickers: {
+  '& .MuiTextField-root': {
+    margin: theme.spacing(1),
     [theme.breakpoints.down('sm')]: {
-      justifyContent: 'space-between',
+      width: '30ch',
     },
+    [theme.breakpoints.up('md')]: {
+      width: '40ch',
+    },
+  },
+  '& .MuiButton-root': {
+    margin: theme.spacing(2),
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+    },
+    [theme.breakpoints.up('md')]: {
+      width: 'auto',
+    },
+  },
+  '& .MuiChip-root': {
+    margin: theme.spacing(0.5),
   },
 }));
 
-const mockAmenities = [
-  'Максимум двое сзади',
-  'Мгновенное бронирование',
-  'Максимум двое сзади',
-  'Мгновенное бронирование',
-  'Кондиционер',
-  'Wi-Fi',
-];
+const mockAmenities = ['Максимум двое сзади', 'Мгновенное бронирование', 'Кондиционер', 'Wi-Fi'];
 
 const PublishTrip = () => {
-  const classes = useStyles();
+  const theme = useTheme();
+  const isMdUp = useMediaQuery(theme.breakpoints.up('md'));
+
   const [from, setFrom] = React.useState('');
   const [to, setTo] = React.useState('');
   const [selectedDate, setSelectedDate] = React.useState(new Date());
@@ -97,9 +85,6 @@ const PublishTrip = () => {
       });
   };
 
-  const theme = useTheme();
-  const isMdUp = useMediaQuery(theme.breakpoints.up('md'));
-
   const handleAmenityClick = (amenity) => {
     if (amenities.includes(amenity)) {
       setAmenities(amenities.filter((item) => item !== amenity));
@@ -108,14 +93,14 @@ const PublishTrip = () => {
     }
   };
 
-  const textFieldProps = isMdUp ? {} : { className: classes.mobileInput };
+  const textFieldProps = isMdUp ? {} : { className: 'mobileInput' };
 
   return (
-    <Container component="section">
+    <RootContainer component="section">
       <Typography variant="h4" marked="center" align="center" component="h2" sx={{ mt: 4, mb: 4 }}>
         Опубликовать поездку
       </Typography>
-      <form className={classes.root} noValidate autoComplete="off">
+      <form noValidate autoComplete="off">
         <Grid
           container
           spacing={2}
@@ -227,7 +212,7 @@ const PublishTrip = () => {
           </Grid>
         </Grid>
       </form>
-    </Container>
+    </RootContainer>
   );
 };
 
