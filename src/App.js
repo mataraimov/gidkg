@@ -14,6 +14,7 @@ import TripDetails from './pages/Tourism/TripDetails';
 import CreateBusiness from './pages/business/CreateBusiness';
 import UserProfile from './pages/UserProfile';
 import SingleTour from './pages/Tourism/SingleTour';
+import PublishTrip from './pages/Tourism/PublishTrip';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="/tour/:id" element={<SingleTour />} />
         <Route path="/create-business" element={<CreateBusiness />} />
         <Route path="/user-profile" element={<UserProfile />} />
+        <Route path="/publish-trip" element={<PublishTrip />} />
       </Routes>
       <AppFooter />
     </div>

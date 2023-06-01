@@ -100,10 +100,12 @@ const Transport = () => {
         </Link>
       </Box>
       <Box sx={{ margin: '10px auto', width: '300px' }}>
-        <PublishButton>
-          <PublishIcon />
-          Опубликовать поездку
-        </PublishButton>
+        <Link to="/publish-trip" style={{ textDecoration: 'none' }}>
+          <PublishButton>
+            <PublishIcon />
+            Опубликовать поездку
+          </PublishButton>
+        </Link>
       </Box>
     </Container>
   );
