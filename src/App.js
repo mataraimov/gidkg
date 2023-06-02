@@ -15,26 +15,28 @@ import CreateBusiness from './pages/business/CreateBusiness';
 import UserProfile from './pages/UserProfile';
 import SingleTour from './pages/Tourism/SingleTour';
 import PublishTrip from './pages/Tourism/PublishTrip';
+import Favourites from './pages/favourites/Favourites';
 
 function App() {
   return (
     <div className="App">
       <AppAppBar />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/sign-in" element={<SignIn />} />
-        <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/forgot" element={<ForgotPassword />} />
-        <Route path="/terms" element={<Terms />} />
-        <Route path="/tourism/*" element={<Tourism />} />
-        <Route path="/tourism/results" element={<SearchResults />} />
-        <Route path="/details/:id" element={<TripDetails />} />
-        <Route path="/*" element={<NotFound />} />
-        <Route path="/tour/:id" element={<SingleTour />} />
-        <Route path="/create-business" element={<CreateBusiness />} />
-        <Route path="/user-profile" element={<UserProfile />} />
-        <Route path="/publish-trip" element={<PublishTrip />} />
-      </Routes>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/forgot" element={<ForgotPassword />} />
+          <Route path="/terms" element={<Terms />} />
+          <Route path="/tourism/*" element={<Tourism />} />
+          <Route path="/tourism/results" element={<SearchResults />} />
+          <Route path="/details/:id" element={<TripDetails />} />
+          <Route path="/*" element={<NotFound />} />
+          <Route path="/tour/:id" element={<SingleTour />} />
+          <Route path="/create-business" element={<CreateBusiness />} />
+          <Route path="/user-profile" element={<UserProfile />} />
+          <Route path="/publish-trip" element={<PublishTrip />} />
+          <Route path="/favourites" element={<Favourites />} />
+        </Routes>
       <AppFooter />
     </div>
   );
