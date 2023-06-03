@@ -25,9 +25,6 @@ const Favourites = () => {
                 <Rating
                   name="simple-controlled"
                   value={product.rating}
-                  // onChange={(event, value) => {
-                  //   setRating(value);
-                  // }}
                 />
                 <Link to={`/tour/1`}>
                   <Button variant="contained" color="primary">View Details</Button>

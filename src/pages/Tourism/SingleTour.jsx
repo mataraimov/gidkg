@@ -1,8 +1,21 @@
 import React, { useState } from 'react';
-import { Card, CardMedia, CardContent, Typography, Grid, Box, Rating, Button, } from '@mui/material';
+import { Card, CardMedia, CardContent, Typography, Grid, Box, Rating, Button, TextField,} from '@mui/material';
+
 import Comment from '../../modules/components/Comment';
 
 const SingleTour = () => {
+  const [comment, setComment] = React.useState('');
+
+  const handleChange = (event) => {
+    setComment(event.target.value);
+  };
+
+  const handleSubmit = () => {
+    if (comment.trim() !== '') {
+      // onSubmit(comment);
+      setComment('');
+    }
+  };
 
   const [rating, setRating] = useState(0)
   console.log(rating);
@@ -81,18 +94,35 @@ const SingleTour = () => {
           </Box>
         </Box>
       </CardContent>
-      <Box sx={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(3, 1fr)',
-        maxWidth: '1300px',
-        width: '100%',
-        m: '0 auto'
-        }}>
-        {
-          comments.map((item, index) => (
-            <Comment key={index} item={item} />
-          ))
-        }
+      <Box display="flex" flexDirection="column" mb={2} 
+        sx={{
+          maxWidth: '1300px',
+          width: '100%',
+          margin: '0 auto',
+          }}>
+      <TextField
+        label="Add a comment"
+        multiline
+        rows={4}
+        value={comment}
+        onChange={handleChange}
+        variant="outlined"
+      />
+      <Button variant="contained" color="primary" onClick={handleSubmit}>Post Comment</Button>
+    
+        <Box sx={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(3, 1fr)',
+          maxWidth: '1300px',
+          width: '100%',
+          margin: '50px auto',
+          }}>
+          {
+            comments.map((item, index) => (
+              <Comment key={index} item={item} />
+            ))
+          }
+        </Box>
       </Box>
     </Card>
   );
