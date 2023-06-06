@@ -16,6 +16,7 @@ import UserProfile from './pages/UserProfile';
 import SingleTour from './pages/Tourism/SingleTour';
 import PublishTrip from './pages/Tourism/PublishTrip';
 import Favourites from './pages/favourites/Favourites';
+import Test from './pages/Test';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
           <Route path="/user-profile" element={<UserProfile />} />
           <Route path="/publish-trip" element={<PublishTrip />} />
           <Route path="/favourites" element={<Favourites />} />
+          <Route path="/test" element={<Test />} />
         </Routes>
       <AppFooter />
     </div>
