@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Card, CardMedia, CardContent, Typography, Grid, Box, Rating, Button, TextField,} from '@mui/material';
 
 import Comment from '../../modules/components/Comment';
+import YandexMap from '../../modules/components/YandexMap';
+import { YMaps, Map, Placemark } from 'react-yandex-maps';
 
 const SingleTour = () => {
   const [comment, setComment] = React.useState('');
@@ -24,7 +26,8 @@ const SingleTour = () => {
     title: 'Тур великой горы',
     description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea optio necessitatibus non odit quae voluptate quis, iure quo nobis minima, suscipit eveniet deserunt eum est libero ipsa ipsum. Earum cupiditate maxime nam ducimus quidem ex quod, dolor sequi, officiis similique beatae tempora asperiores explicabo vitae et blanditiis ab reiciendis architecto voluptatibus inventore! Iure mollitia, amet neque maiores quo sed sint?',
     image: 'https://i.pinimg.com/originals/58/64/7c/58647cb780f1d3de706285e5683b1f0c.jpg',
-    rating: 4
+    rating: 4,
+    coord: [55.75, 37.57]
   };
   const comments = [
     {
@@ -47,6 +50,7 @@ const SingleTour = () => {
 
   return (
     <Card>
+      <Box sx={{maxWidth: '1200px', m: '0 auto'}}>
       <CardMedia
         component="img"
         alt={tour.title}
@@ -94,6 +98,10 @@ const SingleTour = () => {
           </Box>
         </Box>
       </CardContent>
+
+      <YandexMap mark={tour.coord} />
+      
+      {/* comment Input */}
       <Box display="flex" flexDirection="column" mb={2} 
         sx={{
           maxWidth: '1300px',
@@ -123,6 +131,7 @@ const SingleTour = () => {
             ))
           }
         </Box>
+      </Box>
       </Box>
     </Card>
   );

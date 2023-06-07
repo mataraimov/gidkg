@@ -1,4 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+
+import { YMaps, Map, Placemark } from 'react-yandex-maps';
 import {
   TextField,
   Button,
@@ -9,19 +11,66 @@ import {
   Grid,
   Box,
 } from '@mui/material';
+// import MarkedYMap from '../../modules/components/MarkedYMap';
 
 const CreateBusiness = () => {
-  const [name, setName] = useState('');
-  const [latitude, setLatitude] = useState('');
-  const [longitude, setLongitude] = useState('');
-  const [image, setImage] = useState('');
-  const [categoryId, setCategoryId] = useState('');
-  const [description, setDescription] = useState('');
+  // const [name, setName] = useState('');
+  // const [latitude, setLatitude] = useState('');
+  // const [longitude, setLongitude] = useState('');
+  // const [image, setImage] = useState('');
+  // const [categoryId, setCategoryId] = useState('');
+  // const [description, setDescription] = useState('');
 
-  const handleSubmit = (event) => {
+  const [coord, setCoord] = useState([0,0]);
+
+  const [formData, setFormData] = useState({
+    name: "",
+    latitude: "",
+    longitude: "",
+    image: "",
+    categoryId: "1",
+    description: "",
+  });
+
+  const handleInputChange = (event) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value
+    })
+  }
+  function handleMapClick(e) {
+    const coords = e.get('coords');
+    setCoord(coords);
+    console.log(coords);
+  }
+  useEffect(() => {
+    if (coord) {
+      setFormData({
+        ...formData,
+        latitude: coord[0],
+        longitude: coord[1],
+      });
+    }
+  }, [coord]);
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Добавьте здесь логику обработки отправки формы
-    // Например, вызов API или отправка данных на сервер
+    console.log(formData);
+    // try {
+    //   let response = await axios.post('https://url/', formData, {
+    //   })
+    //     .then(response => {
+    //       console.log(response.data);
+    //     })
+    //     .catch(error => {
+    //       console.error(error);
+    //     });
+      
+    //   console.log(response.data, "response data");
+      
+    //   // console.log(formData);
+    //   } catch (error) {
+    //     console.error(error, "woooooww");
+    //   }
   };
   
   return (
@@ -35,35 +84,41 @@ const CreateBusiness = () => {
         <Grid item xs={12}>
           <TextField
             label="Имя"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={formData.name}
+            name='name'
+            // onChange={(e) => setName(e.target.value)}
+            onChange={handleInputChange}
             required
             fullWidth
           />
         </Grid>
         <Grid item xs={12}>
-          <TextField
-            label="Долгота"
-            value={longitude}
-            onChange={(e) => setLongitude(e.target.value)}
-            required
-            fullWidth
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            label="Широта"
-            value={latitude}
-            onChange={(e) => setLatitude(e.target.value)}
-            required
-            fullWidth
-          />
+          {/* <MarkedYMap /> */}
+          <YMaps query={{apikey: '4d02f53f-dd31-4ac9-8afc-5e7f3acfa620'}} width='100%'>
+            <div style={{ height: '300px', width: '100%' }}>
+              <Map defaultState={{ center: [55.75, 37.57], zoom: 10 }} style={{ width: '100%', height: '100%' }} onClick={handleMapClick}>
+                {coord && (
+                  <Placemark
+                    geometry={coord}
+                    options={{ draggable: true }}
+                    modules={['geoObject.addon.balloon']}
+                    properties={{
+                      balloonContentBody: `${coord}`
+                    }}
+                  />
+                )}
+              </Map>
+            </div>
+          </YMaps>
+          <input type="text" readOnly required name="latitude" value={coord[0]} />
+          <input type="text" readOnly required name="longitude" value={ coord[1]} />
         </Grid>
         <Grid item xs={12}>
           <TextField
             label="Изображение"
-            value={image}
-            onChange={(e) => setImage(e.target.value)}
+            value={formData.image}
+            name='image'
+            onChange={handleInputChange}
             required
             fullWidth
           />
@@ -72,13 +127,13 @@ const CreateBusiness = () => {
           <FormControl fullWidth>
             <InputLabel>Категория</InputLabel>
             <Select
-              value={categoryId}
-              onChange={(e) => setCategoryId(e.target.value)}
+              value={formData.categoryId}
+              onChange={handleInputChange}
               required
             >
-              <MenuItem value="1">Категория 1</MenuItem>
-              <MenuItem value="2">Категория 2</MenuItem>
-              <MenuItem value="3">Категория 3</MenuItem>
+              <MenuItem value={formData.categoryId}>Категория 1</MenuItem>
+              {/* <MenuItem value="2">Категория 2</MenuItem>
+              <MenuItem value="3">Категория 3</MenuItem> */}
             </Select>
           </FormControl>
         </Grid>
@@ -87,8 +142,9 @@ const CreateBusiness = () => {
             label="Описание"
             multiline
             rows={4}
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            value={formData.description}
+            name='description'
+            onChange={handleInputChange}
             required
             fullWidth
           />
