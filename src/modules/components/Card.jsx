@@ -5,13 +5,23 @@ import { Link } from 'react-router-dom';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 
-const CardTour = ({item, func}) => {
-  const [isFavorite, setIsFavorite] = useState(false);
+const CardTour = ({item, setFavFunc, delFavFunc, fav, setFav}) => {
+  
+  // const [isFavorite, setIsFavorite] = useState(false);
+  
 
   const handleToggleFavorite = () => {
-    setIsFavorite(!isFavorite);
-    func(item.id)
+    if (fav.includes(item.id)) {
+      delFavFunc(item.id);
+    } else {
+      setFavFunc(item.id);
+    }
   };
+
+  const handleDelFunc = () =>  {
+    delFavFunc(item.id);
+  };
+
   return (
     <Grid item key={item.id} xs={12} sm={4}>
       <Card>
@@ -37,9 +47,14 @@ const CardTour = ({item, func}) => {
                 <Typography variant="body2" color="textSecondary" component="p">
                   {item.description}
                 </Typography>
-                <div color={isFavorite ? 'primary' : 'default'} onClick={handleToggleFavorite}>
-                  {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+                <div color={'default'} onClick={handleToggleFavorite}>
+                  <FavoriteIcon /> 
                 </div>
+
+                <div onClick={handleDelFunc}>
+                  <FavoriteBorderIcon />
+                </div>
+                
               </Box>
             </CardContent>
           </CardActionArea>
