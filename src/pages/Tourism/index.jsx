@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import withRoot from '../../modules/withRoot';
@@ -15,6 +15,7 @@ import { NavigateBeforeSharp, NavigateNextSharp } from '@mui/icons-material';
 import { offers } from '../../utils';
 import { CategoryButton, CategoryContainer, Line } from './utils/ui/Buttons';
 import { Link } from 'react-router-dom';
+import CardTour from '../../modules/components/Card';
 
 const categories = [
   'Все',
@@ -30,6 +31,8 @@ const categories = [
 ];
 
 function Tourism() {
+
+  const [fav, setFav] = useState([])
   const [selectedCategory, setSelectedCategory] = useState('Все');
   const [page, setPage] = useState(0);
   const matches = useMediaQuery('(max-width:600px)'); // true if the screen width is 600px or less
@@ -43,6 +46,19 @@ function Tourism() {
 
   const handleNext = () => setPage(page + 1);
   const handleBack = () => setPage(page - 1);
+
+  const setFavFunc = (id, item) => {
+    if (fav.includes(id)) return
+    setFav([...fav, id])
+
+  }
+  const delFavFunc = (id) => {
+    setFav(fav.filter(elem => elem !== id))
+  }
+
+  useEffect(() => {
+    console.log(fav);
+  }, [])
 
   return (
     <Grid container spacing={3}>
@@ -70,16 +86,18 @@ function Tourism() {
               <Grid item xs={12}>
                 <Typography variant="h4">{category}</Typography>
                 <Grid container spacing={3}>
-                  {categoryOffers.map((offer) => (
+                  {categoryOffers.map((offer, index) => (
                     // <Button >
-                      <Link to={`/tour/1`}>
-                      <Grid item xs={12} sm={6} md={4}>
-                        <img src={offer.imageUrl} alt={offer.title} />
-                        <Typography variant="h6">{offer.title}</Typography>
-                        <Typography>{offer.price}</Typography>
-                        <Typography>{offer.address}</Typography>
-                      </Grid>
-                      </Link>
+                    <CardTour item={offer} key={index} setFavFunc={setFavFunc} delFavFunc={delFavFunc} fav={fav} setFav={setFav} />
+                    
+                      // <Link to={`/tour/1`}>
+                      // <Grid item xs={12} sm={6} md={4}>
+                      //   <img src={offer.imageUrl} alt={offer.title} />
+                      //   <Typography variant="h6">{offer.title}</Typography>
+                      //   <Typography>{offer.price}</Typography>
+                      //   <Typography>{offer.address}</Typography>
+                      // </Grid>
+                      // </Link>
                     // </Button>
                   ))}
                 </Grid>

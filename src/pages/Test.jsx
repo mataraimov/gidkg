@@ -4,6 +4,8 @@ import { Grid } from '@mui/material';
 
 const Test = () => {
   const [fav, setFav] = useState([])
+
+
   const businesses = [
     {
       id: 1,
@@ -28,11 +30,19 @@ const Test = () => {
     },
   ];
   
-  const handleFav = (id) => {
-    console.log("the id of product: ", id);
+  const setFavFunc = (id, item) => {
+    if (fav.includes(id)) return
     setFav([...fav, id])
-    // fav.filter(id != id)
+
   }
+  const delFavFunc = (id) => {
+    setFav(fav.filter(elem => elem !== id))
+  }
+
+  useEffect(() => {
+    console.log(fav);
+  }, [])
+
   const seeFav = () => {
     console.log(fav);
   }
@@ -43,8 +53,7 @@ const Test = () => {
       <Grid container spacing={2}>
         {
           businesses.map((item,index) => (
-              <Card item={item} key={index} func={handleFav} />
-          
+              <Card item={item} key={index} setFavFunc={setFavFunc} delFavFunc={delFavFunc} fav={fav} setFav={setFav} />
           ))
         }
         <button onClick={seeFav}>click me!</button>
