@@ -15,20 +15,22 @@ import { NavigateBeforeSharp, NavigateNextSharp } from '@mui/icons-material';
 import { offers } from '../../utils';
 import { CategoryButton, CategoryContainer, Line } from './utils/ui/Buttons';
 import { Link } from 'react-router-dom';
+
 import CardTour from '../../modules/components/Card';
 
-const categories = [
-  'Все',
-  'Горные пейзажи',
-  'Экскурсии',
-  'Культурные мероприятия',
-  'Конные прогулки',
-  'Национальная кухня',
-  'Шоппинг',
-  'Пешие прогулки',
-  'Спорт и фитнес',
-  'Спа и массаж',
-];
+import useSWR from 'swr';
+
+
+async function fetcher(url) {
+  const res = await fetch(url);
+  if (!res.ok) {
+    const error = new Error('An error occurred while fetching the data.');
+    error.info = await res.json();
+    error.status = res.status;
+    throw error;
+  }
+  return res.json();
+}
 
 function Tourism() {
 
@@ -37,6 +39,10 @@ function Tourism() {
   const [page, setPage] = useState(0);
   const matches = useMediaQuery('(max-width:600px)'); // true if the screen width is 600px or less
   const maxItemsPerPage = matches ? 1 : 3;
+  const { data, error } = useSWR('http://127.0.0.1:8000/api/place/category_list/', fetcher);
+
+  const categories = data ? ['Все', ...data.map((item) => item.name)] : [];
+
   const filterOffers = (category) => {
     if (category === 'Все') {
       return offers;
@@ -80,25 +86,16 @@ function Tourism() {
             const categoryOffers = filterOffers(category).slice(
               page * maxItemsPerPage,
               (page + 1) * maxItemsPerPage,
-              
             );
             return (
               <Grid item xs={12}>
                 <Typography variant="h4">{category}</Typography>
                 <Grid container spacing={3}>
                   {categoryOffers.map((offer, index) => (
-                    // <Button >
+                    
                     <CardTour item={offer} key={index} setFavFunc={setFavFunc} delFavFunc={delFavFunc} fav={fav} setFav={setFav} />
                     
-                      // <Link to={`/tour/1`}>
-                      // <Grid item xs={12} sm={6} md={4}>
-                      //   <img src={offer.imageUrl} alt={offer.title} />
-                      //   <Typography variant="h6">{offer.title}</Typography>
-                      //   <Typography>{offer.price}</Typography>
-                      //   <Typography>{offer.address}</Typography>
-                      // </Grid>
-                      // </Link>
-                    // </Button>
+                      
                   ))}
                 </Grid>
                 <IconButton

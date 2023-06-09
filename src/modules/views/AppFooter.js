@@ -34,18 +34,18 @@ const iconStyle = {
 
 const LANGUAGES = [
   {
-    code: 'en-US',
-    name: 'English',
+    code: 'ru-RU',
+    name: 'Русский',
   },
   {
-    code: 'fr-FR',
-    name: 'Français',
+    code: 'kg-KG',
+    name: 'Кыргызча',
   },
 ];
 
 function AppFooter() {
   return (
-    <Typography component="footer" sx={{ display: 'flex', bgcolor: 'white' }}>
+    <Typography component="footer" sx={{ mt: 'auto', display: 'flex', bgcolor: 'white' }}>
       <Container sx={{ my: 8, display: 'flex' }}>
         <Grid container spacing={5}>
           <Grid item xs={6} sm={4} md={3}>
@@ -105,27 +105,7 @@ function AppFooter() {
               ))}
             </TextField>
           </Grid>
-          <Grid item>
-            <Typography variant="caption">
-              {'Иконки созданы  '}
-              <Link href="https://www.freepik.com" rel="sponsored" title="Freepik">
-                Freepik
-              </Link>
-              {' с '}
-              <Link href="https://www.flaticon.com" rel="sponsored" title="Flaticon">
-                www.flaticon.com
-              </Link>
-              {' лицензия'}
-              <Link
-                href="https://creativecommons.org/licenses/by/3.0/"
-                title="Creative Commons BY 3.0"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                CC 3.0 BY
-              </Link>
-            </Typography>
-          </Grid>
+          <Grid item></Grid>
         </Grid>
       </Container>
     </Typography>

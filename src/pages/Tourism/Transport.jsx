@@ -4,7 +4,7 @@ import Container from '@mui/material/Container';
 import SearchIcon from '@mui/icons-material/Search';
 import axios from 'axios';
 import { debounce } from 'lodash';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Typography from '../../modules/components/Typography';
 import withRoot from '../../modules/withRoot';
 import PublishIcon from '@mui/icons-material/Publish';
@@ -13,6 +13,8 @@ import SearchTextField from './utils/helpers/SearchTextField';
 import CustomDatePicker from './utils/helpers/CustomDatePicker';
 import PassengerSelector from './utils/helpers/PassengerSelector';
 import { useMediaQuery, useTheme } from '@mui/material';
+import { format } from 'date-fns';
+
 const Transport = () => {
   const [from, setFrom] = React.useState('');
   const [to, setTo] = React.useState('');
@@ -20,6 +22,7 @@ const Transport = () => {
   const [selectedDate, setSelectedDate] = React.useState(new Date());
   const [fromSuggestions, setFromSuggestions] = React.useState([]);
   const [toSuggestions, setToSuggestions] = React.useState([]);
+  const navigate = useNavigate();
 
   const handleSearch = React.useCallback(
     debounce((query, setSuggestionsFunction) => {
@@ -48,8 +51,24 @@ const Transport = () => {
     setFromSuggestions([]);
     setToSuggestions([]);
   };
+
+  const handleTripSearch = () => {
+    const query = `${from} ${to} ${format(selectedDate, 'yyyy-MM-dd')} ${passengerCount}`;
+
+    axios
+      .post(`http://localhost:8000/api/transport/search/`, { query: query })
+      .then((response) => {
+        console.log(response.data); // Выводим данные ответа в консоль
+        navigate('/tourism/results', { state: { data: response.data } });
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   const theme = useTheme();
   const isMdUp = useMediaQuery(theme.breakpoints.up('md'));
+
   return (
     <Container sx={{ mt: 4, mb: 4 }} component="section">
       <Typography variant="h4" marked="center" align="center" component="h2" sx={{ mt: 4, mb: 4 }}>
@@ -93,7 +112,7 @@ const Transport = () => {
         <PassengerSelector initialCount={passengerCount} onCountChange={setPassengerCount} />
 
         <Link to={`/tourism/results`} style={{ textDecoration: 'none' }}>
-          <SearchButton>
+          <SearchButton onClick={handleTripSearch}>
             <SearchIcon />
             Поиск
           </SearchButton>

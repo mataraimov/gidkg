@@ -11,6 +11,8 @@ import SendIcon from '@mui/icons-material/Send';
 import CustomDatePicker from './utils/helpers/CustomDatePicker';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
+import { format, parse } from 'date-fns';
+import { useNavigate } from 'react-router-dom';
 
 const RootContainer = styled(Container)(({ theme }) => ({
   '& .MuiChip-root': {
@@ -62,23 +64,32 @@ const PublishTrip = () => {
   const [farePerPassenger, setFarePerPassenger] = React.useState('');
   const [amenities, setAmenities] = React.useState([]);
 
+  const navigate = useNavigate();
   const handlePublish = () => {
+    const formattedDate = format(selectedDate, 'yyyy-MM-dd');
+    console.log(formattedDate);
+    // Assuming duration is a string like '2:15' for 2 hours 15 minutes
+    const durationParts = duration.split(':');
+    const durationInSeconds = +durationParts[0] * 60 * 60 + +durationParts[1] * 60;
+    const formattedDuration = format(parse(durationInSeconds, 'T', new Date()), 'HH:mm:ss');
+
     axios
-      .post('/api/trips', {
-        from,
-        to,
-        date: selectedDate,
-        passengers: passengerCount,
-        transportType,
-        transportModel,
-        departureTime,
-        duration,
-        arrivalDistance,
-        farePerPassenger,
-        amenities,
+      .post('http://127.0.0.1:8000/api/transport/create/', {
+        where_from: from,
+        where_to: to,
+        date: formattedDate,
+        count_of_passengers: passengerCount,
+        type_of_transport: transportType,
+        model_of_transport: transportModel,
+        departure_times: departureTime, // make sure this is also in the correct format
+        duration: formattedDuration,
+        distance: arrivalDistance,
+        price: farePerPassenger,
+        free_place: passengerCount, // Assuming all places are initially free
       })
       .then((response) => {
         console.log(response);
+        navigate('/tourism/results');
       })
       .catch((error) => {
         console.error(error);
