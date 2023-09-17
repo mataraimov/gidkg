@@ -11,7 +11,7 @@ const TripDetails = () => {
     const fetchTripDetails = async () => {
       try {
         const response = await axios.get(
-          `http://mataraimov.pythonanywhere.com/api/transport/detail/${id}`,
+          `https://mataraimov.pythonanywhere.com/api/transport/detail/${id}`,
         );
         setTripDetails(response.data);
       } catch (error) {

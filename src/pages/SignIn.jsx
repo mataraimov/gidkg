@@ -44,7 +44,7 @@ function SignIn() {
       password: values.password,
     };
     axios
-      .post('http://mataraimov.pythonanywhere.com/api/users/login/', userData)
+      .post('https://mataraimov.pythonanywhere.com/api/users/login/', userData)
       .then((response) => {
         const data = response.data;
         if (!isEmpty(data) && data.access) {

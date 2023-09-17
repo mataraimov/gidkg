@@ -33,7 +33,7 @@ const CreateBusiness = () => {
     const fetchCategories = async () => {
       try {
         const response = await axios.get(
-          'http://mataraimov.pythonanywhere.com/api/place/category_list/',
+          'https://mataraimov.pythonanywhere.com/api/place/category_list/',
         );
         setCategories(response.data);
       } catch (error) {
@@ -113,7 +113,7 @@ const CreateBusiness = () => {
     }
     try {
       const response = await axios.post(
-        'http://mataraimov.pythonanywhere.com/api/place/place_create/',
+        'https://mataraimov.pythonanywhere.com/api/place/place_create/',
         formDataToSend,
         {
           headers: {

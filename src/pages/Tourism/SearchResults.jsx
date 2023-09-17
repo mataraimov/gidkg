@@ -49,7 +49,7 @@ const SearchResults = () => {
   const [sortOption, setSortOption] = useState('');
 
   const { data: results, error } = useSWR(
-    'http://mataraimov.pythonanywhere.com/api/transport/list/',
+    'https://mataraimov.pythonanywhere.com/api/transport/list/',
     fetcher,
   );
 

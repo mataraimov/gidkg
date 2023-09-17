@@ -38,7 +38,7 @@ function Tourism() {
   const matches = useMediaQuery('(max-width:600px)'); // true if the screen width is 600px or less
   const maxItemsPerPage = matches ? 1 : 3;
   const { data, error } = useSWR(
-    'http://mataraimov.pythonanywhere.com/api/place/category_list/',
+    'https://mataraimov.pythonanywhere.com/api/place/category_list/',
     fetcher,
   );
 
