@@ -18,7 +18,7 @@ function AppAppBar() {
         <Toolbar sx={{ justifyContent: 'space-between' }}>
           <Box sx={{ flex: 1 }} />
           <Link variant="h6" underline="none" color="inherit" href="/" sx={{ fontSize: 24 }}>
-            {'gidkg'}
+            {'TouristKG'}
           </Link>
           <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
             <Link color="inherit" variant="h6" underline="none" href="/sign-in/" sx={rightLink}>
