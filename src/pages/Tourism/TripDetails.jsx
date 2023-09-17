@@ -10,7 +10,9 @@ const TripDetails = () => {
   useEffect(() => {
     const fetchTripDetails = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/api/transport/detail/${id}`);
+        const response = await axios.get(
+          `http://mataraimov.pythonanywhere.com/api/transport/detail/${id}`,
+        );
         setTripDetails(response.data);
       } catch (error) {
         console.error('Error fetching trip details:', error);

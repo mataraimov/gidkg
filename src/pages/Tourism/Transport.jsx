@@ -56,7 +56,7 @@ const Transport = () => {
     const query = `${from} ${to} ${format(selectedDate, 'yyyy-MM-dd')} ${passengerCount}`;
 
     axios
-      .post(`http://localhost:8000/api/transport/search/`, { query: query })
+      .post(`http://http://mataraimov.pythonanywhere.com0/api/transport/search/`, { query: query })
       .then((response) => {
         console.log(response.data); // Выводим данные ответа в консоль
         navigate('/tourism/results', { state: { data: response.data } });

@@ -48,7 +48,10 @@ const SearchResults = () => {
   const [filteredResults, setFilteredResults] = useState([]);
   const [sortOption, setSortOption] = useState('');
 
-  const { data: results, error } = useSWR('http://127.0.0.1:8000/api/transport/list/', fetcher);
+  const { data: results, error } = useSWR(
+    'http://mataraimov.pythonanywhere.com/api/transport/list/',
+    fetcher,
+  );
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);

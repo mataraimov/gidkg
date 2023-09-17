@@ -32,7 +32,9 @@ const CreateBusiness = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/api/place/category_list/');
+        const response = await axios.get(
+          'http://mataraimov.pythonanywhere.com/api/place/category_list/',
+        );
         setCategories(response.data);
       } catch (error) {
         console.error(error);
@@ -111,7 +113,7 @@ const CreateBusiness = () => {
     }
     try {
       const response = await axios.post(
-        'http://localhost:8000/api/place/place_create/',
+        'http://mataraimov.pythonanywhere.com/api/place/place_create/',
         formDataToSend,
         {
           headers: {

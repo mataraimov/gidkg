@@ -74,7 +74,7 @@ const PublishTrip = () => {
     const formattedDuration = format(parse(durationInSeconds, 'T', new Date()), 'HH:mm:ss');
 
     axios
-      .post('http://127.0.0.1:8000/api/transport/create/', {
+      .post('http://mataraimov.pythonanywhere.com/api/transport/create/', {
         where_from: from,
         where_to: to,
         date: formattedDate,

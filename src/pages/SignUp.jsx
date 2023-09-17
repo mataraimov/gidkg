@@ -37,7 +37,7 @@ function SignUp() {
       phone_number: values.phone_number,
     };
     axios
-      .post('http://127.0.0.1:8000/api/users/register/', userData)
+      .post('http://mataraimov.pythonanywhere.com/api/users/register/', userData)
       .then((response) => {
         const data = response.data;
         if (!isEmpty(data) && data.email) {

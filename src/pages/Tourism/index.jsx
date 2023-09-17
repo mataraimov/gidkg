@@ -20,7 +20,6 @@ import CardTour from '../../modules/components/Card';
 
 import useSWR from 'swr';
 
-
 async function fetcher(url) {
   const res = await fetch(url);
   if (!res.ok) {
@@ -33,13 +32,15 @@ async function fetcher(url) {
 }
 
 function Tourism() {
-
-  const [fav, setFav] = useState([])
+  const [fav, setFav] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('Все');
   const [page, setPage] = useState(0);
   const matches = useMediaQuery('(max-width:600px)'); // true if the screen width is 600px or less
   const maxItemsPerPage = matches ? 1 : 3;
-  const { data, error } = useSWR('http://127.0.0.1:8000/api/place/category_list/', fetcher);
+  const { data, error } = useSWR(
+    'http://mataraimov.pythonanywhere.com/api/place/category_list/',
+    fetcher,
+  );
 
   const categories = data ? ['Все', ...data.map((item) => item.name)] : [];
 
@@ -54,17 +55,16 @@ function Tourism() {
   const handleBack = () => setPage(page - 1);
 
   const setFavFunc = (id, item) => {
-    if (fav.includes(id)) return
-    setFav([...fav, id])
-
-  }
+    if (fav.includes(id)) return;
+    setFav([...fav, id]);
+  };
   const delFavFunc = (id) => {
-    setFav(fav.filter(elem => elem !== id))
-  }
+    setFav(fav.filter((elem) => elem !== id));
+  };
 
   useEffect(() => {
     console.log(fav);
-  }, [])
+  }, []);
 
   return (
     <Grid container spacing={3}>
@@ -92,10 +92,14 @@ function Tourism() {
                 <Typography variant="h4">{category}</Typography>
                 <Grid container spacing={3}>
                   {categoryOffers.map((offer, index) => (
-                    
-                    <CardTour item={offer} key={index} setFavFunc={setFavFunc} delFavFunc={delFavFunc} fav={fav} setFav={setFav} />
-                    
-                      
+                    <CardTour
+                      item={offer}
+                      key={index}
+                      setFavFunc={setFavFunc}
+                      delFavFunc={delFavFunc}
+                      fav={fav}
+                      setFav={setFav}
+                    />
                   ))}
                 </Grid>
                 <IconButton

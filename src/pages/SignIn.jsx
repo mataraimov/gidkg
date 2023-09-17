@@ -44,7 +44,7 @@ function SignIn() {
       password: values.password,
     };
     axios
-      .post('http://127.0.0.1:8000/api/users/login/', userData)
+      .post('http://mataraimov.pythonanywhere.com/api/users/login/', userData)
       .then((response) => {
         const data = response.data;
         if (!isEmpty(data) && data.access) {
